@@ -1,0 +1,23 @@
+from setuptools import find_packages,setup
+
+from typing import List
+
+def get_requirements(file_path:str)->List[str]:
+    '''this func will returen a list in requirements'''
+
+    requirements=[]
+    with open("requirements.txt") as file_obj:
+        requirements=file_obj.readlines()
+        requirements=[req.replace("/n","") for req in requirements]
+
+        if '-e .' in requirements:
+            requirements.remove('-e .')
+
+setup(
+    name="KRISHH",
+    author="Devansh",
+    version="0.0.1",
+    author_email="devanshbhardwaj701@gmail.com",
+    packages=find_packages(),
+    install_requires=get_requirements("requirements.txt")
+)
